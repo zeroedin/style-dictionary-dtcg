@@ -21,11 +21,12 @@
       "lg": { "$value": "{size.font.2xl}" }
     }
   },
-  "label": {
+  "code": {
     "font-size": {
       "$type": "dimension",
       "sm": { "$value": "{size.font.xs}" },
-      "md": { "$value": "{size.font.sm}" }
+      "md": { "$value": "{size.font.sm}" },
+      "lg": { "$value": "{size.font.md}" }
     }
   }
 }
