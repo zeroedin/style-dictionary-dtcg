@@ -1,0 +1,31 @@
+{
+"radius": {
+    "$type": "dimension",
+    "sm": { "$value": "{size.radius.sm}" },
+    "md": { "$value": "{size.radius.md}" },
+    "lg": { "$value": "{size.radius.lg}" },
+    "pill": { "$value": "{size.radius.full}" }
+  },
+  "body-text": {
+    "font-size": {
+      "$type": "dimension",
+      "sm": { "$value": "{size.font.sm}" },
+      "md": { "$value": "{size.font.md}" }
+    }
+  },
+  "heading": {
+    "font-size": {
+      "$type": "dimension",
+      "sm": { "$value": "{size.font.lg}" },
+      "md": { "$value": "{size.font.xl}" },
+      "lg": { "$value": "{size.font.2xl}" }
+    }
+  },
+  "label": {
+    "font-size": {
+      "$type": "dimension",
+      "sm": { "$value": "{size.font.xs}" },
+      "md": { "$value": "{size.font.sm}" }
+    }
+  }
+}

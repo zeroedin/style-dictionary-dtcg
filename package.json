@@ -1,0 +1,11 @@
+{
+  "name": "tokens",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node sd.config.js"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.5.0"
+  }
+}
