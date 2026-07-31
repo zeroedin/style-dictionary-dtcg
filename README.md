@@ -14,24 +14,65 @@ npm install
 npm run build
 ```
 
-Outputs to `build/`:
+## Output
 
-- `css/primitives.css` — raw palette values
-- `css/semantic.css` — intent-based tokens
-- `css/scheme.css` — color scheme tokens with `light-dark()` resolution
-- `js/tokens.js` — ESM export of all tokens
+```
+build/
+├── css/
+│   ├── global.css                  # Combined file with @layer ordering
+│   ├── primitive/
+│   │   ├── color.css               # @layer primitive.color
+│   │   ├── dimension.css           # @layer primitive.dimension
+│   │   └── font-family.css         # @layer primitive.font-family
+│   ├── semantic/
+│   │   ├── radius.css              # @layer semantic.radius
+│   │   └── typography.css          # @layer semantic.typography
+│   ├── scheme.css                  # @layer prefers.scheme
+│   ├── contrast.css                # @layer prefers.contrast
+│   └── theme/
+│       └── compact.css             # Density theme (opt-in)
+└── js/
+    ├── tokens.js                   # Primitives + semantic ESM export
+    ├── scheme.js
+    ├── contrast.js
+    └── theme/
+        └── compact.js
+```
 
 ## Token structure
 
 ```
 src/
-├── primitive/       # Raw values (colors, spacing, radii, font sizes)
-├── semantic/        # Intent tokens referencing primitives (dimensions)
-└── scheme/          # Light/dark color mappings → -on-light / -on-dark vars
+├── primitive/       # Raw values (colors, spacing, radii, font sizes, font families)
+├── semantic/        # Intent tokens referencing primitives (radius, typography)
+├── prefers/         # OS user preferences (maps to @media prefers-*)
+│   ├── scheme.json  # Light/dark via light-dark() and color-scheme: light dark
+│   └── contrast.json # High contrast via @media (prefers-contrast: more)
+└── theme/           # Opt-in design themes (loaded after global.css)
+    └── compact.json # Reduced density
 ```
 
-Scheme tokens produce three layers in `scheme.css`:
+## Layers
 
-1. `color-scheme: light dark;`
-2. `--felt-*-on-light` / `--felt-*-on-dark` per-scheme values
-3. `--felt-*` resolved via `light-dark()` for automatic switching
+Each CSS file declares its own `@layer`. `global.css` combines them with explicit ordering:
+
+```
+@layer primitive, semantic, prefers;
+```
+
+Sub-layers: `primitive.color`, `primitive.dimension`, `primitive.font-family`, `semantic.radius`, `semantic.typography`, `prefers.scheme`, `prefers.contrast`.
+
+## Scheme tokens
+
+Scheme tokens use `--felt-*-on-light` / `--felt-*-on-dark` naming with `light-dark()` resolution:
+
+```css
+--felt-color-text-default-on-light: var(--felt-color-neutral-gray-900);
+--felt-color-text-default-on-dark: var(--felt-color-neutral-gray-100);
+--felt-color-text-default: light-dark(var(--felt-color-text-default-on-light), var(--felt-color-text-default-on-dark));
+```
+
+## Themes vs preferences
+
+- **Preferences** (`src/prefers/`) respond to OS settings via `@media` queries. Included in `global.css`.
+- **Themes** (`src/theme/`) are opt-in overrides loaded separately after `global.css`.
