@@ -64,8 +64,64 @@ const scheme = new StyleDictionary({
   },
 });
 
+const highContrast = new StyleDictionary({
+  source: [...primitiveSource, ...semanticSource, 'src/theme/high-contrast.json'],
+  platforms: {
+    css: {
+      transformGroup: transformGroups.css,
+      buildPath: 'build/css/theme/',
+      prefix: 'felt',
+      files: [
+        {
+          destination: 'high-contrast.css',
+          format: formats.cssVariables,
+          filter: (token) => token.filePath.includes('src/theme/'),
+          options: {
+            outputReferences: true,
+            selector: ':root',
+          },
+        },
+      ],
+    },
+  },
+});
+
+const compact = new StyleDictionary({
+  source: [...primitiveSource, ...semanticSource, 'src/theme/compact.json'],
+  platforms: {
+    css: {
+      transformGroup: transformGroups.css,
+      buildPath: 'build/css/theme/',
+      prefix: 'felt',
+      files: [
+        {
+          destination: 'compact.css',
+          format: formats.cssVariables,
+          filter: (token) => token.filePath.includes('src/theme/'),
+          options: {
+            outputReferences: true,
+            selector: ':root',
+          },
+        },
+      ],
+    },
+  },
+});
+
 await base.buildAllPlatforms();
 await scheme.buildAllPlatforms();
+await highContrast.buildAllPlatforms();
+await compact.buildAllPlatforms();
+
+const hcPath = 'build/css/theme/high-contrast.css';
+const hcCss = readFileSync(hcPath, 'utf8');
+const hcLines = hcCss.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
+const indented = hcLines
+  .split('\n')
+  .map((line) => (line.trim() ? '  ' + line : line))
+  .join('\n');
+const hcPatched = `/**\n * Do not edit directly, this file was auto-generated.\n */\n\n@media (prefers-contrast: more) {\n${indented}}\n`;
+writeFileSync(hcPath, hcPatched);
 
 import { readFileSync, writeFileSync } from 'node:fs';
 const schemePath = 'build/css/scheme.css';
