@@ -29,13 +29,13 @@ build/
 │   │   └── typography.css          # @layer semantic.typography
 │   ├── scheme.css                  # @layer prefers.scheme
 │   ├── contrast.css                # @layer prefers.contrast
-│   └── theme/
-│       └── compact.css             # Density theme (opt-in)
+│   └── density/
+│       └── compact.css             # Compact density (opt-in)
 └── js/
     ├── tokens.js                   # Primitives + semantic ESM export
     ├── scheme.js
     ├── contrast.js
-    └── theme/
+    └── density/
         └── compact.js
 ```
 
@@ -48,7 +48,7 @@ src/
 ├── prefers/         # OS user preferences (maps to @media prefers-*)
 │   ├── scheme.json  # Light/dark via light-dark() and color-scheme: light dark
 │   └── contrast.json # High contrast via @media (prefers-contrast: more)
-└── theme/           # Opt-in design themes (loaded after global.css)
+└── density/           # Opt-in density overrides (loaded after global.css)
     └── compact.json # Reduced density
 ```
 
@@ -72,7 +72,7 @@ Scheme tokens use `--felt-*-on-light` / `--felt-*-on-dark` naming with `light-da
 --felt-color-text-default: light-dark(var(--felt-color-text-default-on-light), var(--felt-color-text-default-on-dark));
 ```
 
-## Themes vs preferences
+## Density vs preferences
 
 - **Preferences** (`src/prefers/`) respond to OS settings via `@media` queries. Included in `global.css`.
-- **Themes** (`src/theme/`) are opt-in overrides loaded separately after `global.css`.
+- **Density** (`src/density/`) are opt-in overrides loaded separately after `global.css`.

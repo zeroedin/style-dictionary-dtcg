@@ -128,20 +128,20 @@ const contrast = new StyleDictionary({
   },
 });
 
-const themeFilter = (token) => token.filePath.includes('src/theme/');
+const densityFilter = (token) => token.filePath.includes('src/density/');
 
 const compact = new StyleDictionary({
-  source: [...primitiveSource, ...semanticSource, 'src/theme/compact.json'],
+  source: [...primitiveSource, ...semanticSource, 'src/density/compact.json'],
   platforms: {
     css: {
       transformGroup: transformGroups.css,
-      buildPath: 'build/css/theme/',
+      buildPath: 'build/css/density/',
       prefix: 'felt',
       files: [
         {
           destination: 'compact.css',
           format: formats.cssVariables,
-          filter: themeFilter,
+          filter: densityFilter,
           options: {
             outputReferences: true,
             selector: ':root',
@@ -151,12 +151,12 @@ const compact = new StyleDictionary({
     },
     js: {
       ...jsOutput,
-      buildPath: 'build/js/theme/',
+      buildPath: 'build/js/density/',
       files: [
         {
           destination: 'compact.js',
           format: formats.javascriptEsm,
-          filter: themeFilter,
+          filter: densityFilter,
         },
       ],
     },
