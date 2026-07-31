@@ -40,10 +40,10 @@
       }
     }
   },
-  "radius": {
+  "border-width": {
     "$type": "dimension",
-    "sm": { "$value": "{size.radius.md}" },
-    "md": { "$value": "{size.radius.lg}" },
-    "lg": { "$value": "{size.radius.lg}" }
+    "thin": { "$value": "{size.border-width.md}" },
+    "default": { "$value": "{size.border-width.lg}" },
+    "strong": { "$value": "{size.border-width.xl}" }
   }
 }

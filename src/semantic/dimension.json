@@ -1,5 +1,11 @@
 {
-"radius": {
+  "border-width": {
+    "$type": "dimension",
+    "thin": { "$value": "{size.border-width.xs}" },
+    "default": { "$value": "{size.border-width.md}" },
+    "strong": { "$value": "{size.border-width.lg}" }
+  },
+  "radius": {
     "$type": "dimension",
     "sm": { "$value": "{size.radius.sm}" },
     "md": { "$value": "{size.radius.md}" },

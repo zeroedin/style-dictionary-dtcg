@@ -64,6 +64,8 @@ Each CSS file declares its own `@layer`. `global.css` combines them with explici
 
 Sub-layers: `primitive.color`, `primitive.dimension`, `primitive.font-family`, `semantic.radius`, `semantic.typography`, `prefers.scheme`, `prefers.contrast`.
 
+Density layers (`density.compact`) are not included in `global.css` — they are loaded separately as opt-in overrides.
+
 ## Scheme tokens
 
 Scheme tokens use `--felt-*-on-light` / `--felt-*-on-dark` naming with `light-dark()` resolution:

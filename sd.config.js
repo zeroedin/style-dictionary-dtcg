@@ -42,10 +42,19 @@ const base = new StyleDictionary({
           options: { outputReferences: true },
         },
         {
+          destination: 'semantic/border-width.css',
+          format: formats.cssVariables,
+          filter: (token) =>
+            token.filePath.includes('src/semantic/') && token.path[0] === 'border-width',
+          options: { outputReferences: true },
+        },
+        {
           destination: 'semantic/typography.css',
           format: formats.cssVariables,
           filter: (token) =>
-            token.filePath.includes('src/semantic/') && token.path[0] !== 'radius',
+            token.filePath.includes('src/semantic/') &&
+            token.path[0] !== 'radius' &&
+            token.path[0] !== 'border-width',
           options: { outputReferences: true },
         },
       ],
@@ -193,6 +202,7 @@ function wrapFile(filePath, layerName) {
 wrapFile('build/css/primitive/color.css', 'primitive.color');
 wrapFile('build/css/primitive/dimension.css', 'primitive.dimension');
 wrapFile('build/css/primitive/font-family.css', 'primitive.font-family');
+wrapFile('build/css/semantic/border-width.css', 'semantic.border-width');
 wrapFile('build/css/semantic/radius.css', 'semantic.radius');
 wrapFile('build/css/semantic/typography.css', 'semantic.typography');
 
@@ -224,6 +234,7 @@ const globalParts = [
   'build/css/primitive/color.css',
   'build/css/primitive/dimension.css',
   'build/css/primitive/font-family.css',
+  'build/css/semantic/border-width.css',
   'build/css/semantic/radius.css',
   'build/css/semantic/typography.css',
   schemePath,
