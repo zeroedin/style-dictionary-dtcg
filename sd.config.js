@@ -5,6 +5,12 @@ const primitiveSource = ['src/primitive/**/*.json'];
 const semanticSource = ['src/semantic/**/*.json'];
 const schemeSource = ['src/scheme/**/*.json'];
 
+const jsOutput = {
+  transformGroup: transformGroups.js,
+  buildPath: 'build/js/',
+  prefix: 'felt',
+};
+
 const base = new StyleDictionary({
   source: [...primitiveSource, ...semanticSource],
   platforms: {
@@ -29,9 +35,7 @@ const base = new StyleDictionary({
       ],
     },
     js: {
-      transformGroup: transformGroups.js,
-      buildPath: 'build/js/',
-      prefix: 'felt',
+      ...jsOutput,
       files: [
         {
           destination: 'tokens.js',
@@ -61,8 +65,20 @@ const scheme = new StyleDictionary({
         },
       ],
     },
+    js: {
+      ...jsOutput,
+      files: [
+        {
+          destination: 'scheme.js',
+          format: formats.javascriptEsm,
+          filter: (token) => token.filePath.includes('src/scheme/'),
+        },
+      ],
+    },
   },
 });
+
+const themeFilter = (token) => token.filePath.includes('src/theme/');
 
 const highContrast = new StyleDictionary({
   source: [...primitiveSource, ...semanticSource, 'src/theme/high-contrast.json'],
@@ -75,11 +91,22 @@ const highContrast = new StyleDictionary({
         {
           destination: 'high-contrast.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath.includes('src/theme/'),
+          filter: themeFilter,
           options: {
             outputReferences: true,
             selector: ':root',
           },
+        },
+      ],
+    },
+    js: {
+      ...jsOutput,
+      buildPath: 'build/js/theme/',
+      files: [
+        {
+          destination: 'high-contrast.js',
+          format: formats.javascriptEsm,
+          filter: themeFilter,
         },
       ],
     },
@@ -97,11 +124,22 @@ const compact = new StyleDictionary({
         {
           destination: 'compact.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath.includes('src/theme/'),
+          filter: themeFilter,
           options: {
             outputReferences: true,
             selector: ':root',
           },
+        },
+      ],
+    },
+    js: {
+      ...jsOutput,
+      buildPath: 'build/js/theme/',
+      files: [
+        {
+          destination: 'compact.js',
+          format: formats.javascriptEsm,
+          filter: themeFilter,
         },
       ],
     },
