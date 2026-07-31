@@ -27,14 +27,16 @@ build/
 │   ├── semantic/
 │   │   ├── radius.css              # @layer semantic.radius
 │   │   └── typography.css          # @layer semantic.typography
-│   ├── scheme.css                  # @layer prefers.scheme
-│   ├── contrast.css                # @layer prefers.contrast
+│   ├── prefers/
+│   │   ├── scheme.css              # @layer prefers.scheme
+│   │   └── contrast.css            # @layer prefers.contrast
 │   └── density/
-│       └── compact.css             # Compact density (opt-in)
+│       └── compact.css             # @layer density.compact (opt-in)
 └── js/
     ├── tokens.js                   # Primitives + semantic ESM export
-    ├── scheme.js
-    ├── contrast.js
+    ├── prefers/
+    │   ├── scheme.js
+    │   └── contrast.js
     └── density/
         └── compact.js
 ```
