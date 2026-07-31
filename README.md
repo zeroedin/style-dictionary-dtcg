@@ -33,5 +33,5 @@ src/
 Scheme tokens produce three layers in `scheme.css`:
 
 1. `color-scheme: light dark;`
-2. `--rh-*-on-light` / `--rh-*-on-dark` per-scheme values
-3. `--rh-*` resolved via `light-dark()` for automatic switching
+2. `--felt-*-on-light` / `--felt-*-on-dark` per-scheme values
+3. `--felt-*` resolved via `light-dark()` for automatic switching
