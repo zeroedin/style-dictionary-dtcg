@@ -20,17 +20,33 @@ const base = new StyleDictionary({
       prefix: 'felt',
       files: [
         {
-          destination: 'primitives.css',
+          destination: 'primitive/color.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath.includes('src/primitive/'),
+          filter: (token) => token.filePath === 'src/primitive/color.json',
         },
         {
-          destination: 'semantic.css',
+          destination: 'primitive/dimension.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath.includes('src/semantic/'),
-          options: {
-            outputReferences: true,
-          },
+          filter: (token) => token.filePath === 'src/primitive/dimension.json',
+        },
+        {
+          destination: 'primitive/font-family.css',
+          format: formats.cssVariables,
+          filter: (token) => token.filePath === 'src/primitive/font-family.json',
+        },
+        {
+          destination: 'semantic/radius.css',
+          format: formats.cssVariables,
+          filter: (token) =>
+            token.filePath.includes('src/semantic/') && token.path[0] === 'radius',
+          options: { outputReferences: true },
+        },
+        {
+          destination: 'semantic/typography.css',
+          format: formats.cssVariables,
+          filter: (token) =>
+            token.filePath.includes('src/semantic/') && token.path[0] !== 'radius',
+          options: { outputReferences: true },
         },
       ],
     },
@@ -152,51 +168,65 @@ await scheme.buildAllPlatforms();
 await contrast.buildAllPlatforms();
 await compact.buildAllPlatforms();
 
-const contrastPath = 'build/css/contrast.css';
-const contrastCss = readFileSync(contrastPath, 'utf8');
-const contrastLines = contrastCss.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
-const indented = contrastLines
-  .split('\n')
-  .map((line) => (line.trim() ? '  ' + line : line))
-  .join('\n');
-const contrastPatched = `/**\n * Do not edit directly, this file was auto-generated.\n */\n\n@media (prefers-contrast: more) {\n${indented}}\n`;
-writeFileSync(contrastPath, contrastPatched);
-
 import { readFileSync, writeFileSync } from 'node:fs';
-const schemePath = 'build/css/scheme.css';
-const css = readFileSync(schemePath, 'utf8');
 
-const varPattern = /--([\w-]+)-on-light/g;
-const semanticNames = new Set();
-for (const match of css.matchAll(varPattern)) {
-  semanticNames.add(match[1]);
+const header = '/**\n * Do not edit directly, this file was auto-generated.\n */\n\n';
+const read = (f) => readFileSync(f, 'utf8');
+const stripHeader = (s) => s.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
+const getRoot = (s) => stripHeader(s).replace(/^:root \{\n/, '').replace(/\n}\n?$/, '').trim();
+const indent = (s, n) =>
+  s
+    .split('\n')
+    .map((l) => (l.trim() ? '  '.repeat(n) + l.trim() : ''))
+    .join('\n');
+
+function wrapFile(filePath, layerName) {
+  const raw = read(filePath);
+  const vars = getRoot(raw);
+  const content = `${header}@layer ${layerName} {\n  :root {\n${indent(vars, 2)}\n  }\n}\n`;
+  writeFileSync(filePath, content);
+  return content;
 }
 
+wrapFile('build/css/primitive/color.css', 'primitive.color');
+wrapFile('build/css/primitive/dimension.css', 'primitive.dimension');
+wrapFile('build/css/primitive/font-family.css', 'primitive.font-family');
+wrapFile('build/css/semantic/radius.css', 'semantic.radius');
+wrapFile('build/css/semantic/typography.css', 'semantic.typography');
+
+const schemePath = 'build/css/scheme.css';
+const schemeRaw = read(schemePath);
+const schemeVars = getRoot(schemeRaw);
+const varPattern = /--([\w-]+)-on-light/g;
+const semanticNames = new Set();
+for (const match of schemeRaw.matchAll(varPattern)) {
+  semanticNames.add(match[1]);
+}
 const lightDarkVars = [...semanticNames]
   .map(
     (name) =>
-      `  --${name}: light-dark(var(--${name}-on-light), var(--${name}-on-dark));`,
+      `--${name}: light-dark(var(--${name}-on-light), var(--${name}-on-dark));`,
   )
   .join('\n');
+const schemeContent = `${header}@layer prefers.scheme {\n  :root {\n${indent('color-scheme: light dark;\n' + schemeVars + '\n\n' + lightDarkVars, 2)}\n  }\n}\n`;
+writeFileSync(schemePath, schemeContent);
 
-const patched = css.replace(
-  ':root {',
-  `:root {\n  color-scheme: light dark;\n`,
-);
-const closed = patched.replace(/\n}\n$/, `\n\n${lightDarkVars}\n}\n`);
+const contrastPath = 'build/css/contrast.css';
+const contrastVars = getRoot(read(contrastPath));
+const contrastContent = `${header}@layer prefers.contrast {\n  @media (prefers-contrast: more) {\n    :root {\n${indent(contrastVars, 3)}\n    }\n  }\n}\n`;
+writeFileSync(contrastPath, contrastContent);
 
-writeFileSync(schemePath, closed);
-
-const primitivesCss = readFileSync('build/css/primitives.css', 'utf8');
-const semanticCss = readFileSync('build/css/semantic.css', 'utf8');
-const schemeCss = readFileSync(schemePath, 'utf8');
-
-const stripHeader = (s) => s.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
-const unwrapRoot = (s) => stripHeader(s).replace(/^:root \{\n/, '').replace(/\n}\n?$/, '');
-
-const contrastFinal = readFileSync(contrastPath, 'utf8');
+const globalParts = [
+  'build/css/primitive/color.css',
+  'build/css/primitive/dimension.css',
+  'build/css/primitive/font-family.css',
+  'build/css/semantic/radius.css',
+  'build/css/semantic/typography.css',
+  schemePath,
+  contrastPath,
+].map((f) => stripHeader(read(f)));
 
 writeFileSync(
   'build/css/global.css',
-  `/**\n * Do not edit directly, this file was auto-generated.\n */\n\n:root {\n${unwrapRoot(primitivesCss)}\n\n${unwrapRoot(semanticCss)}\n\n${unwrapRoot(schemeCss)}\n}\n\n${stripHeader(contrastFinal)}`,
+  `${header}@layer primitive, semantic, prefers;\n\n${globalParts.join('\n')}`
 );
