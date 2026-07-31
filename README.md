@@ -17,7 +17,7 @@ npm run build
 Outputs to `build/`:
 
 - `css/primitives.css` — raw palette values
-- `css/semantic.css` — intent-based dimension tokens
+- `css/semantic.css` — intent-based tokens
 - `css/scheme.css` — color scheme tokens with `light-dark()` resolution
 - `js/tokens.js` — ESM export of all tokens
 
