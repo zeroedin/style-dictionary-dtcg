@@ -11,7 +11,7 @@ const base = new StyleDictionary({
     css: {
       transformGroup: transformGroups.css,
       buildPath: 'build/css/',
-      prefix: 'rh',
+      prefix: 'felt',
       files: [
         {
           destination: 'primitives.css',
@@ -31,7 +31,7 @@ const base = new StyleDictionary({
     js: {
       transformGroup: transformGroups.js,
       buildPath: 'build/js/',
-      prefix: 'rh',
+      prefix: 'felt',
       files: [
         {
           destination: 'tokens.js',
@@ -48,7 +48,7 @@ const scheme = new StyleDictionary({
     css: {
       transformGroup: transformGroups.css,
       buildPath: 'build/css/',
-      prefix: 'rh',
+      prefix: 'felt',
       files: [
         {
           destination: 'scheme.css',
