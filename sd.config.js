@@ -69,7 +69,7 @@ const scheme = new StyleDictionary({
   platforms: {
     css: {
       transformGroup: transformGroups.css,
-      buildPath: 'build/css/',
+      buildPath: 'build/css/prefers/',
       prefix: 'felt',
       files: [
         {
@@ -85,6 +85,7 @@ const scheme = new StyleDictionary({
     },
     js: {
       ...jsOutput,
+      buildPath: 'build/js/prefers/',
       files: [
         {
           destination: 'scheme.js',
@@ -101,7 +102,7 @@ const contrast = new StyleDictionary({
   platforms: {
     css: {
       transformGroup: transformGroups.css,
-      buildPath: 'build/css/',
+      buildPath: 'build/css/prefers/',
       prefix: 'felt',
       files: [
         {
@@ -117,6 +118,7 @@ const contrast = new StyleDictionary({
     },
     js: {
       ...jsOutput,
+      buildPath: 'build/js/prefers/',
       files: [
         {
           destination: 'contrast.js',
@@ -194,7 +196,7 @@ wrapFile('build/css/primitive/font-family.css', 'primitive.font-family');
 wrapFile('build/css/semantic/radius.css', 'semantic.radius');
 wrapFile('build/css/semantic/typography.css', 'semantic.typography');
 
-const schemePath = 'build/css/scheme.css';
+const schemePath = 'build/css/prefers/scheme.css';
 const schemeRaw = read(schemePath);
 const schemeVars = getRoot(schemeRaw);
 const varPattern = /--([\w-]+)-on-light/g;
@@ -211,10 +213,12 @@ const lightDarkVars = [...semanticNames]
 const schemeContent = `${header}@layer prefers.scheme {\n  :root {\n${indent('color-scheme: light dark;\n' + schemeVars + '\n\n' + lightDarkVars, 2)}\n  }\n}\n`;
 writeFileSync(schemePath, schemeContent);
 
-const contrastPath = 'build/css/contrast.css';
+const contrastPath = 'build/css/prefers/contrast.css';
 const contrastVars = getRoot(read(contrastPath));
 const contrastContent = `${header}@layer prefers.contrast {\n  @media (prefers-contrast: more) {\n    :root {\n${indent(contrastVars, 3)}\n    }\n  }\n}\n`;
 writeFileSync(contrastPath, contrastContent);
+
+wrapFile('build/css/density/compact.css', 'density.compact');
 
 const globalParts = [
   'build/css/primitive/color.css',
