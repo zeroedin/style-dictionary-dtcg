@@ -1,0 +1,24 @@
+font:
+  $type: fontFamily
+  family:
+    body:
+      $value:
+        - Red Hat Text
+        - Helvetica Neue
+        - Helvetica
+        - Arial
+        - sans-serif
+    heading:
+      $value:
+        - Red Hat Display
+        - Helvetica Neue
+        - Helvetica
+        - Arial
+        - sans-serif
+    code:
+      $value:
+        - Red Hat Mono
+        - Menlo
+        - Consolas
+        - Monaco
+        - monospace

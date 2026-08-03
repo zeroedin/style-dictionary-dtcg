@@ -6,6 +6,7 @@
     "build": "node sd.config.js"
   },
   "devDependencies": {
-    "style-dictionary": "^5.5.0"
+    "style-dictionary": "^5.5.0",
+    "yaml": "^2.9.0"
   }
 }

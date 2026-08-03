@@ -1,9 +1,17 @@
 import StyleDictionary from 'style-dictionary';
 import { formats, transformGroups } from 'style-dictionary/enums';
+import { parse } from 'yaml';
 
-const primitiveSource = ['src/primitive/**/*.json'];
-const semanticSource = ['src/semantic/**/*.json'];
-const prefersSource = ['src/prefers/**/*.json'];
+StyleDictionary.registerParser({
+  name: 'yaml',
+  pattern: /\.ya?ml$/,
+  parser: ({ contents }) => parse(contents),
+});
+
+const parserConfig = { parsers: ['yaml'] };
+
+const primitiveSource = ['src/primitive/**/*.yaml'];
+const semanticSource = ['src/semantic/**/*.yaml'];
 
 const jsOutput = {
   transformGroup: transformGroups.js,
@@ -12,6 +20,7 @@ const jsOutput = {
 };
 
 const base = new StyleDictionary({
+  ...parserConfig,
   source: [...primitiveSource, ...semanticSource],
   platforms: {
     css: {
@@ -22,17 +31,17 @@ const base = new StyleDictionary({
         {
           destination: 'primitive/color.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath === 'src/primitive/color.json',
+          filter: (token) => token.filePath === 'src/primitive/color.yaml',
         },
         {
           destination: 'primitive/dimension.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath === 'src/primitive/dimension.json',
+          filter: (token) => token.filePath === 'src/primitive/dimension.yaml',
         },
         {
           destination: 'primitive/font-family.css',
           format: formats.cssVariables,
-          filter: (token) => token.filePath === 'src/primitive/font-family.json',
+          filter: (token) => token.filePath === 'src/primitive/font-family.yaml',
         },
         {
           destination: 'semantic/radius.css',
@@ -74,7 +83,8 @@ const base = new StyleDictionary({
 const prefersFilter = (token) => token.filePath.includes('src/prefers/');
 
 const scheme = new StyleDictionary({
-  source: [...primitiveSource, 'src/prefers/scheme.json'],
+  ...parserConfig,
+  source: [...primitiveSource, 'src/prefers/scheme.yaml'],
   platforms: {
     css: {
       transformGroup: transformGroups.css,
@@ -107,7 +117,8 @@ const scheme = new StyleDictionary({
 });
 
 const contrast = new StyleDictionary({
-  source: [...primitiveSource, ...semanticSource, 'src/prefers/contrast.json'],
+  ...parserConfig,
+  source: [...primitiveSource, ...semanticSource, 'src/prefers/contrast.yaml'],
   platforms: {
     css: {
       transformGroup: transformGroups.css,
@@ -142,7 +153,8 @@ const contrast = new StyleDictionary({
 const densityFilter = (token) => token.filePath.includes('src/density/');
 
 const compact = new StyleDictionary({
-  source: [...primitiveSource, ...semanticSource, 'src/density/compact.json'],
+  ...parserConfig,
+  source: [...primitiveSource, ...semanticSource, 'src/density/compact.yaml'],
   platforms: {
     css: {
       transformGroup: transformGroups.css,
