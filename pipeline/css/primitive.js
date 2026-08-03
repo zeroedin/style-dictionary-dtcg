@@ -13,12 +13,6 @@ export const primitive = new StyleDictionary({
       buildPath: 'build/css/',
       prefix: 'felt',
       files: [
-        {
-          destination: 'primitive/color/brand.css',
-          format: 'css/layer',
-          filter: (token) => token.filePath === 'src/primitive/color/brand.yaml',
-          options: { layerName: 'primitive.color.brand' },
-        },
 {
           destination: 'primitive/color/gray.css',
           format: 'css/layer',

@@ -6,7 +6,6 @@ const stripHeader = (s) => s.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
 
 export function postProcess() {
   const parts = [
-    'build/css/primitive/color/brand.css',
 'build/css/primitive/color/gray.css',
     'build/css/primitive/color/blue.css',
     'build/css/primitive/color/red-orange.css',
