@@ -4,7 +4,7 @@ import { parserConfig } from '../parser.js';
 import { primitiveSource, semanticSource } from '../shared.js';
 import '../formats.js';
 
-const semanticFilter = (token) => token.filePath.includes('src/semantic/');
+const semanticFilter = (token) => token.filePath.includes('tokens/semantic/');
 
 export const semantic = new StyleDictionary({
   ...parserConfig,
@@ -12,7 +12,7 @@ export const semantic = new StyleDictionary({
   platforms: {
     css: {
       transformGroup: transformGroups.css,
-      buildPath: 'build/css/',
+      buildPath: './css/',
       prefix: 'felt',
       files: [
         {

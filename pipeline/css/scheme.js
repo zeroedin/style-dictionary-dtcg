@@ -6,11 +6,11 @@ import '../formats.js';
 
 export const scheme = new StyleDictionary({
   ...parserConfig,
-  source: [...primitiveSource, 'src/scheme/**/*.yaml'],
+  source: [...primitiveSource, 'tokens/scheme/**/*.yaml'],
   platforms: {
     css: {
       transformGroup: transformGroups.css,
-      buildPath: 'build/css/scheme/',
+      buildPath: './css/scheme/',
       prefix: 'felt',
       files: [
         {
@@ -32,10 +32,10 @@ export const scheme = new StyleDictionary({
           options: { layerName: 'scheme.border' },
         },
         {
-          destination: 'action.css',
+          destination: 'interactive.css',
           format: 'css/scheme',
-          filter: (token) => token.path[1] === 'action',
-          options: { layerName: 'scheme.action' },
+          filter: (token) => token.path[1] === 'interactive',
+          options: { layerName: 'scheme.interactive' },
         },
       ],
     },

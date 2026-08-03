@@ -8,15 +8,25 @@ export const js = new StyleDictionary({
   source: [
     ...primitiveSource,
     ...semanticSource,
-    'src/scheme/**/*.yaml',
+    'tokens/scheme/**/*.yaml',
   ],
   platforms: {
-    tokens: {
+    js: {
       ...jsOutput,
       files: [
         {
           destination: 'tokens.js',
           format: formats.javascriptEsm,
+        },
+      ],
+    },
+    json: {
+      ...jsOutput,
+      buildPath: './json/',
+      files: [
+        {
+          destination: 'tokens.json',
+          format: formats.json,
         },
       ],
     },

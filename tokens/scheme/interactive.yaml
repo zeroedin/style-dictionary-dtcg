@@ -1,0 +1,14 @@
+color:
+  $type: color
+  interactive:
+    primary:
+      default:
+        on-light:
+          $value: "{color.blue.50}"
+        on-dark:
+          $value: "{color.blue.30}"
+      hover:
+        on-light:
+          $value: "{color.blue.70}"
+        on-dark:
+          $value: "{color.blue.20}"
