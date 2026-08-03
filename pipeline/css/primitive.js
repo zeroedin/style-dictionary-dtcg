@@ -14,10 +14,34 @@ export const primitive = new StyleDictionary({
       prefix: 'felt',
       files: [
         {
-          destination: 'primitive/color.css',
+          destination: 'primitive/color/brand.css',
           format: 'css/layer',
-          filter: (token) => token.filePath === 'src/primitive/color.yaml',
-          options: { layerName: 'primitive.color' },
+          filter: (token) => token.filePath === 'src/primitive/color/brand.yaml',
+          options: { layerName: 'primitive.color.brand' },
+        },
+{
+          destination: 'primitive/color/gray.css',
+          format: 'css/layer',
+          filter: (token) => token.filePath === 'src/primitive/color/gray.yaml',
+          options: { layerName: 'primitive.color.gray' },
+        },
+        {
+          destination: 'primitive/color/blue.css',
+          format: 'css/layer',
+          filter: (token) => token.filePath === 'src/primitive/color/blue.yaml',
+          options: { layerName: 'primitive.color.blue' },
+        },
+        {
+          destination: 'primitive/color/red-orange.css',
+          format: 'css/layer',
+          filter: (token) => token.filePath === 'src/primitive/color/red-orange.yaml',
+          options: { layerName: 'primitive.color.red-orange' },
+        },
+        {
+          destination: 'primitive/color/red.css',
+          format: 'css/layer',
+          filter: (token) => token.filePath === 'src/primitive/color/red.yaml',
+          options: { layerName: 'primitive.color.red' },
         },
         {
           destination: 'primitive/font-family.css',

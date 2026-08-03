@@ -1,0 +1,33 @@
+color:
+  $type: color
+  text:
+    default:
+      on-light:
+        $value: "{color.gray.95}"
+      on-dark:
+        $value: "{color.gray.10}"
+    secondary:
+      on-light:
+        $value: "{color.gray.50}"
+      on-dark:
+        $value: "{color.gray.40}"
+    disabled:
+      on-light:
+        $value: "{color.gray.40}"
+      on-dark:
+        $value: "{color.gray.50}"
+    inverse:
+      on-light:
+        $value: "{color.white}"
+      on-dark:
+        $value: "{color.gray.95}"
+    brand:
+      on-light:
+        $value: "{color.red.50}"
+      on-dark:
+        $value: "{color.red.50}"
+    link:
+      on-light:
+        $value: "{color.red.50}"
+      on-dark:
+        $value: "{color.red.50}"

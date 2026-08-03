@@ -6,7 +6,11 @@ const stripHeader = (s) => s.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
 
 export function postProcess() {
   const parts = [
-    'build/css/primitive/color.css',
+    'build/css/primitive/color/brand.css',
+'build/css/primitive/color/gray.css',
+    'build/css/primitive/color/blue.css',
+    'build/css/primitive/color/red-orange.css',
+    'build/css/primitive/color/red.css',
     'build/css/primitive/font-family.css',
     'build/css/primitive/size/spacing.css',
     'build/css/primitive/size/radius.css',
@@ -14,7 +18,10 @@ export function postProcess() {
     'build/css/primitive/size/font.css',
     'build/css/semantic/container.css',
     'build/css/semantic/typography.css',
-    'build/css/scheme/scheme.css',
+    'build/css/scheme/text.css',
+    'build/css/scheme/surface.css',
+    'build/css/scheme/border.css',
+    'build/css/scheme/action.css',
   ].map((f) => stripHeader(read(f)));
 
   writeFileSync(

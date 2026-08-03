@@ -1,0 +1,17 @@
+color:
+  $type: color
+  red-orange:
+    10:
+      $value: "#ffe3d9"
+    20:
+      $value: "#fbbea8"
+    30:
+      $value: "#f89b78"
+    40:
+      $value: "#f4784a"
+    50:
+      $value: "#f0561d"
+    60:
+      $value: "#b1380b"
+    70:
+      $value: "#731f00"

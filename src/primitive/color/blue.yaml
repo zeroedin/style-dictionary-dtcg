@@ -1,0 +1,17 @@
+color:
+  $type: color
+  blue:
+    10:
+      $value: "#e0f0ff"
+    20:
+      $value: "#b9dafc"
+    30:
+      $value: "#92c5f9"
+    40:
+      $value: "#4394e5"
+    50:
+      $value: "#0066cc"
+    60:
+      $value: "#004d99"
+    70:
+      $value: "#003366"

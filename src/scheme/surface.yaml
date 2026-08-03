@@ -1,0 +1,18 @@
+color:
+  $type: color
+  surface:
+    default:
+      on-light:
+        $value: "{color.white}"
+      on-dark:
+        $value: "{color.gray.90}"
+    subtle:
+      on-light:
+        $value: "{color.gray.10}"
+      on-dark:
+        $value: "{color.gray.80}"
+    strong:
+      on-light:
+        $value: "{color.gray.95}"
+      on-dark:
+        $value: "{color.gray.10}"

@@ -1,0 +1,21 @@
+color:
+  $type: color
+  red:
+    05:
+      $value: "#fef0f0"
+    10:
+      $value: "#fce3e3"
+    20:
+      $value: "#fbc5c5"
+    30:
+      $value: "#f9a8a8"
+    40:
+      $value: "#f56e6e"
+    50:
+      $value: "#ee0000"
+    60:
+      $value: "#a60000"
+    70:
+      $value: "#5f0000"
+    80:
+      $value: "#3f0000"

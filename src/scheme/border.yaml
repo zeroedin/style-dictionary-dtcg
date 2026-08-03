@@ -1,0 +1,23 @@
+color:
+  $type: color
+  border:
+    default:
+      on-light:
+        $value: "{color.gray.30}"
+      on-dark:
+        $value: "{color.gray.70}"
+    strong:
+      on-light:
+        $value: "{color.gray.50}"
+      on-dark:
+        $value: "{color.gray.45}"
+    subtle:
+      on-light:
+        $value: "{color.gray.20}"
+      on-dark:
+        $value: "{color.gray.80}"
+    brand:
+      on-light:
+        $value: "{color.red.50}"
+      on-dark:
+        $value: "{color.red.50}"
