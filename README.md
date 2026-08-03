@@ -14,33 +14,6 @@ npm install
 npm run build
 ```
 
-## Output
-
-```
-build/
-├── css/
-│   ├── global.css                  # Combined file with @layer ordering
-│   ├── primitive/
-│   │   ├── color.css               # @layer primitive.color
-│   │   ├── dimension.css           # @layer primitive.dimension
-│   │   └── font-family.css         # @layer primitive.font-family
-│   ├── semantic/
-│   │   ├── radius.css              # @layer semantic.radius
-│   │   └── typography.css          # @layer semantic.typography
-│   ├── prefers/
-│   │   ├── scheme.css              # @layer prefers.scheme
-│   │   └── contrast.css            # @layer prefers.contrast
-│   └── density/
-│       └── compact.css             # @layer density.compact (opt-in)
-└── js/
-    ├── tokens.js                   # Primitives + semantic ESM export
-    ├── prefers/
-    │   ├── scheme.js
-    │   └── contrast.js
-    └── density/
-        └── compact.js
-```
-
 ## Token structure
 
 ```
@@ -80,3 +53,31 @@ Scheme tokens use `--felt-*-on-light` / `--felt-*-on-dark` naming with `light-da
 
 - **Preferences** (`src/prefers/`) respond to OS settings via `@media` queries. Included in `global.css`.
 - **Density** (`src/density/`) are opt-in overrides loaded separately after `global.css`.
+
+## Output
+
+```
+build/
+├── css/
+│   ├── global.css                  # Combined file with @layer ordering
+│   ├── primitive/
+│   │   ├── color.css               # @layer primitive.color
+│   │   ├── dimension.css           # @layer primitive.dimension
+│   │   └── font-family.css         # @layer primitive.font-family
+│   ├── semantic/
+│   │   ├── border-width.css        # @layer semantic.border-width
+│   │   ├── radius.css              # @layer semantic.radius
+│   │   └── typography.css          # @layer semantic.typography
+│   ├── prefers/
+│   │   ├── scheme.css              # @layer prefers.scheme
+│   │   └── contrast.css            # @layer prefers.contrast
+│   └── density/
+│       └── compact.css             # @layer density.compact (opt-in)
+└── js/
+    ├── tokens.js                   # Primitives + semantic ESM export
+    ├── prefers/
+    │   ├── scheme.js
+    │   └── contrast.js
+    └── density/
+        └── compact.js
+```
