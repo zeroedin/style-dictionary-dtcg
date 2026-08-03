@@ -1,7 +1,0 @@
-color:
-  $type: color
-  brand:
-    primary:
-      $value: "#6200ee"
-    secondary:
-      $value: "#03dac6"
