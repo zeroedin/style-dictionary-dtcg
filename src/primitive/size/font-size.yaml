@@ -1,0 +1,29 @@
+font:
+  $type: dimension
+  body-text:
+    sm:
+      $value: 14px
+    md:
+      $value: 16px
+    lg:
+      $value: 18px
+  heading:
+    sm:
+      $value: 16px
+    md:
+      $value: 20px
+    lg:
+      $value: 24px
+    xl:
+      $value: 32px
+    2xl:
+      $value: 40px
+    3xl:
+      $value: 48px
+    4xl:
+      $value: 60px
+  code:
+    sm:
+      $value: 14px
+    md:
+      $value: 16px

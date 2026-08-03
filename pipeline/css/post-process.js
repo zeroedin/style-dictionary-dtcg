@@ -7,10 +7,12 @@ const stripHeader = (s) => s.replace(/\/\*\*[\s\S]*?\*\/\n\n/, '');
 export function postProcess() {
   const parts = [
     'build/css/primitive/color.css',
-    'build/css/primitive/dimension.css',
     'build/css/primitive/font-family.css',
-    'build/css/semantic/border-width.css',
-    'build/css/semantic/radius.css',
+    'build/css/primitive/size/spacing.css',
+    'build/css/primitive/size/radius.css',
+    'build/css/primitive/size/border-width.css',
+    'build/css/primitive/size/font-size.css',
+    'build/css/semantic/container.css',
     'build/css/semantic/typography.css',
     'build/css/prefers/scheme.css',
     'build/css/prefers/contrast.css',

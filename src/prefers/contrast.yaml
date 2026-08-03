@@ -43,11 +43,12 @@ color:
         $value: "{color.neutral.gray-500}"
       on-dark:
         $value: "{color.neutral.gray-500}"
-border-width:
-  $type: dimension
-  thin:
-    $value: "{size.border-width.md}"
-  default:
-    $value: "{size.border-width.lg}"
-  strong:
-    $value: "{size.border-width.xl}"
+container:
+  border:
+    $type: dimension
+    thin:
+      $value: "{border-width.md}"
+    default:
+      $value: "{border-width.lg}"
+    strong:
+      $value: "{border-width.xl}"

@@ -1,0 +1,21 @@
+container:
+  border:
+    $type: dimension
+    thin:
+      $value: "{border-width.xs}"
+    default:
+      $value: "{border-width.md}"
+    strong:
+      $value: "{border-width.lg}"
+  corner:
+    $type: dimension
+    sharp:
+      $value: "{radius.none}"
+    subtle:
+      $value: "{radius.sm}"
+    default:
+      $value: "{radius.md}"
+    round:
+      $value: "{radius.lg}"
+    pill:
+      $value: "{radius.full}"

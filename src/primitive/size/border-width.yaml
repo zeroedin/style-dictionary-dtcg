@@ -1,0 +1,12 @@
+border-width:
+  $type: dimension
+  xs:
+    $value: 1px
+  sm:
+    $value: 2px
+  md:
+    $value: 3px
+  lg:
+    $value: 4px
+  xl:
+    $value: 6px

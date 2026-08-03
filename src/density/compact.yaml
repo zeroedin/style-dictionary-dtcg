@@ -1,48 +1,48 @@
 radius:
   $type: dimension
-  sm:
-    $value: "{size.radius.sm}"
-  md:
-    $value: "{size.radius.sm}"
-  lg:
-    $value: "{size.radius.md}"
+  container:
+    subtle:
+      $value: "{radius.sm}"
+    default:
+      $value: "{radius.sm}"
+    round:
+      $value: "{radius.full}"
 body-text:
   font-size:
     $type: dimension
-    sm:
-      $value: "{size.font.xs}"
-    md:
-      $value: "{size.font.sm}"
+    default:
+      $value: "{font.body-text.sm}"
+    caption:
+      $value: "{font.body-text.sm}"
 heading:
   font-size:
     $type: dimension
-    sm:
-      $value: "{size.font.md}"
-    md:
-      $value: "{size.font.lg}"
-    lg:
-      $value: "{size.font.xl}"
+    title:
+      $value: "{font.heading.lg}"
+    subtitle:
+      $value: "{font.heading.md}"
+    heading:
+      $value: "{font.heading.sm}"
+    subheading:
+      $value: "{font.heading.sm}"
 code:
   font-size:
     $type: dimension
-    sm:
-      $value: "{size.font.xs}"
-    md:
-      $value: "{size.font.xs}"
-    lg:
-      $value: "{size.font.sm}"
-size:
+    inline:
+      $value: "{font.code.sm}"
+    block:
+      $value: "{font.code.sm}"
+spacing:
   $type: dimension
-  spacing:
-    xs:
-      $value: 2px
-    sm:
-      $value: 4px
-    md:
-      $value: 8px
-    lg:
-      $value: 16px
-    xl:
-      $value: 24px
-    2xl:
-      $value: 32px
+  xs:
+    $value: 2px
+  sm:
+    $value: 4px
+  md:
+    $value: 8px
+  lg:
+    $value: 16px
+  xl:
+    $value: 24px
+  2xl:
+    $value: 32px

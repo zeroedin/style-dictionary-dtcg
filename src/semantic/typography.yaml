@@ -1,0 +1,14 @@
+typography:
+  $type: dimension
+  title:
+    $value: "{font.heading.xl}"
+  subtitle:
+    $value: "{font.heading.lg}"
+  heading:
+    $value: "{font.heading.md}"
+  subheading:
+    $value: "{font.heading.sm}"
+  body-text:
+    $value: "{font.body-text.md}"
+  caption:
+    $value: "{font.body-text.sm}"

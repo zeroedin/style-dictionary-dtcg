@@ -16,24 +16,15 @@ export const semantic = new StyleDictionary({
       prefix: 'felt',
       files: [
         {
-          destination: 'semantic/border-width.css',
+          destination: 'semantic/container.css',
           format: 'css/layer',
-          filter: (token) => semanticFilter(token) && token.path[0] === 'border-width',
-          options: { layerName: 'semantic.border-width' },
-        },
-        {
-          destination: 'semantic/radius.css',
-          format: 'css/layer',
-          filter: (token) => semanticFilter(token) && token.path[0] === 'radius',
-          options: { layerName: 'semantic.radius' },
+          filter: (token) => semanticFilter(token) && token.path[0] === 'container',
+          options: { layerName: 'semantic.container' },
         },
         {
           destination: 'semantic/typography.css',
           format: 'css/layer',
-          filter: (token) =>
-            semanticFilter(token) &&
-            token.path[0] !== 'radius' &&
-            token.path[0] !== 'border-width',
+          filter: (token) => semanticFilter(token) && token.path[0] !== 'container',
           options: { layerName: 'semantic.typography' },
         },
       ],
