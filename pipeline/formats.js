@@ -24,18 +24,6 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerFormat({
-  name: 'css/layer-media',
-  format: ({ dictionary, options }) => {
-    const { layerName, mediaQuery } = options;
-    const vars = dictionary.allTokens
-      .map((token) => `      --${token.name}: ${resolveValue(token, dictionary)};`)
-      .join('\n');
-
-    return `${header}\n\n@layer ${layerName} {\n  ${mediaQuery} {\n    :root {\n${vars}\n    }\n  }\n}\n`;
-  },
-});
-
-StyleDictionary.registerFormat({
   name: 'css/scheme',
   format: ({ dictionary, options }) => {
     const { layerName } = options;

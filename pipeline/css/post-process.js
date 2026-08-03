@@ -11,15 +11,14 @@ export function postProcess() {
     'build/css/primitive/size/spacing.css',
     'build/css/primitive/size/radius.css',
     'build/css/primitive/size/border-width.css',
-    'build/css/primitive/size/font-size.css',
+    'build/css/primitive/size/font.css',
     'build/css/semantic/container.css',
     'build/css/semantic/typography.css',
-    'build/css/prefers/scheme.css',
-    'build/css/prefers/contrast.css',
+    'build/css/scheme/scheme.css',
   ].map((f) => stripHeader(read(f)));
 
   writeFileSync(
     'build/css/global.css',
-    `${header}@layer primitive, semantic, prefers;\n\n${parts.join('\n')}`,
+    `${header}@layer primitive, semantic, scheme;\n\n${parts.join('\n')}`,
   );
 }

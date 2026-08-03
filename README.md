@@ -1,6 +1,6 @@
 # Felt Design Tokens
 
-Design tokens using [Style Dictionary](https://styledictionary.com/) v5 with the [DTCG](https://tr.designtokens.org/format/) format.
+Design tokens using [Style Dictionary](https://styledictionary.com/) v5 with the [DTCG](https://tr.designtokens.org/format/) format. Source files are YAML.
 
 ## Setup
 
@@ -18,13 +18,35 @@ npm run build
 
 ```
 src/
-├── primitive/       # Raw values (colors, spacing, radii, font sizes, font families)
-├── semantic/        # Intent tokens referencing primitives (radius, typography)
-├── prefers/         # OS user preferences (maps to @media prefers-*)
-│   ├── scheme.json  # Light/dark via light-dark() and color-scheme: light dark
-│   └── contrast.json # High contrast via @media (prefers-contrast: more)
-└── density/           # Opt-in density overrides (loaded after global.css)
-    └── compact.json # Reduced density
+├── primitive/           # Raw values — no references, no intent
+│   ├── color.yaml       # Brand and neutral palette
+│   ├── font-family.yaml # Font stacks (body, heading, code)
+│   └── size/
+│       ├── spacing.yaml      # Spacing scale (xs–2xl)
+│       ├── radius.yaml       # Border radius scale (none–full)
+│       ├── border-width.yaml # Border width scale (xs–xl)
+│       └── font-size.yaml    # Font size scales (body-text, heading, code)
+├── semantic/            # Structural intent — references primitives
+│   ├── container.yaml   # Container border and corner tokens
+│   └── typography.yaml  # Typographic hierarchy (title–caption)
+└── scheme/              # Color scheme (light/dark)
+    └── scheme.yaml      # Light/dark via light-dark() and color-scheme
+```
+
+## Pipeline
+
+```
+pipeline/
+├── parser.js            # YAML parser registration
+├── shared.js            # Common source globs and config
+├── formats.js           # Custom SD formats (css/layer, css/scheme)
+├── css/
+│   ├── primitive.js     # Primitives → per-file CSS with @layer
+│   ├── semantic.js      # Semantics → per-concern CSS with @layer
+│   ├── scheme.js        # Scheme → CSS with light-dark() combos
+│   └── post-process.js  # Assembles global.css
+└── js/
+    └── tokens.js        # All tokens → single ESM export
 ```
 
 ## Layers
@@ -32,12 +54,10 @@ src/
 Each CSS file declares its own `@layer`. `global.css` combines them with explicit ordering:
 
 ```
-@layer primitive, semantic, prefers;
+@layer primitive, semantic, scheme;
 ```
 
-Sub-layers: `primitive.color`, `primitive.dimension`, `primitive.font-family`, `semantic.radius`, `semantic.typography`, `prefers.scheme`, `prefers.contrast`.
-
-Density layers (`density.compact`) are not included in `global.css` — they are loaded separately as opt-in overrides.
+Sub-layers: `primitive.color`, `primitive.font-family`, `primitive.size.spacing`, `primitive.size.radius`, `primitive.size.border-width`, `primitive.size.font`, `semantic.container`, `semantic.typography`, `scheme`.
 
 ## Scheme tokens
 
@@ -49,35 +69,25 @@ Scheme tokens use `--felt-*-on-light` / `--felt-*-on-dark` naming with `light-da
 --felt-color-text-default: light-dark(var(--felt-color-text-default-on-light), var(--felt-color-text-default-on-dark));
 ```
 
-## Density vs preferences
-
-- **Preferences** (`src/prefers/`) respond to OS settings via `@media` queries. Included in `global.css`.
-- **Density** (`src/density/`) are opt-in overrides loaded separately after `global.css`.
-
 ## Output
 
 ```
 build/
 ├── css/
-│   ├── global.css                  # Combined file with @layer ordering
+│   ├── global.css                       # Combined file with @layer ordering
 │   ├── primitive/
-│   │   ├── color.css               # @layer primitive.color
-│   │   ├── dimension.css           # @layer primitive.dimension
-│   │   └── font-family.css         # @layer primitive.font-family
+│   │   ├── color.css                    # @layer primitive.color
+│   │   ├── font-family.css              # @layer primitive.font-family
+│   │   └── size/
+│   │       ├── spacing.css              # @layer primitive.size.spacing
+│   │       ├── radius.css               # @layer primitive.size.radius
+│   │       ├── border-width.css         # @layer primitive.size.border-width
+│   │       └── font-size.css            # @layer primitive.size.font
 │   ├── semantic/
-│   │   ├── border-width.css        # @layer semantic.border-width
-│   │   ├── radius.css              # @layer semantic.radius
-│   │   └── typography.css          # @layer semantic.typography
-│   ├── prefers/
-│   │   ├── scheme.css              # @layer prefers.scheme
-│   │   └── contrast.css            # @layer prefers.contrast
-│   └── density/
-│       └── compact.css             # @layer density.compact (opt-in)
+│   │   ├── container.css                # @layer semantic.container
+│   │   └── typography.css               # @layer semantic.typography
+│   └── scheme/
+│       └── scheme.css                   # @layer scheme
 └── js/
-    ├── tokens.js                   # Primitives + semantic ESM export
-    ├── prefers/
-    │   ├── scheme.js
-    │   └── contrast.js
-    └── density/
-        └── compact.js
+    └── tokens.js                        # All tokens ESM export
 ```

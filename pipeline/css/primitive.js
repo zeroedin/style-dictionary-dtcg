@@ -44,9 +44,9 @@ export const primitive = new StyleDictionary({
           options: { layerName: 'primitive.size.border-width' },
         },
         {
-          destination: 'primitive/size/font-size.css',
+          destination: 'primitive/size/font.css',
           format: 'css/layer',
-          filter: (token) => token.filePath === 'src/primitive/size/font-size.yaml',
+          filter: (token) => token.filePath === 'src/primitive/size/font.yaml',
           options: { layerName: 'primitive.size.font' },
         },
       ],

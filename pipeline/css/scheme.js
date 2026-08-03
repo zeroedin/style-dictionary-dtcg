@@ -4,22 +4,22 @@ import { parserConfig } from '../parser.js';
 import { primitiveSource } from '../shared.js';
 import '../formats.js';
 
-const prefersFilter = (token) => token.filePath.includes('src/prefers/');
+const schemeFilter = (token) => token.filePath.includes('src/scheme/');
 
 export const scheme = new StyleDictionary({
   ...parserConfig,
-  source: [...primitiveSource, 'src/prefers/scheme.yaml'],
+  source: [...primitiveSource, 'src/scheme/scheme.yaml'],
   platforms: {
     css: {
       transformGroup: transformGroups.css,
-      buildPath: 'build/css/prefers/',
+      buildPath: 'build/css/scheme/',
       prefix: 'felt',
       files: [
         {
           destination: 'scheme.css',
           format: 'css/scheme',
-          filter: prefersFilter,
-          options: { layerName: 'prefers.scheme' },
+          filter: schemeFilter,
+          options: { layerName: 'scheme' },
         },
       ],
     },
