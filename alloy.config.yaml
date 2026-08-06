@@ -1,0 +1,20 @@
+title: "Felt Design Tokens"
+baseURL: "http://localhost:3000"
+
+structure:
+  content: "docs/content"
+  layouts: "docs/layouts"
+  assets: "docs/assets"
+  static: "docs/static"
+  data: "docs/data"
+  plugins: "docs/plugins"
+  components: "docs/components"
+
+build:
+  output: "docs/_site"
+
+passthrough:
+  - from: "css/global.css"
+    to: "css/global.css"
+  - from: "docs/elements"
+    to: "elements"

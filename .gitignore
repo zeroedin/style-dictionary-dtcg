@@ -3,4 +3,5 @@ node_modules/
 /js/
 /json/
 
-/docs/_site
+_site
+.alloy

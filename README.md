@@ -4,6 +4,8 @@ Design tokens using [Style Dictionary](https://styledictionary.com/) v5 with the
 
 ## Setup
 
+[Install alloy](https://alloyssg.dev/getting-started/)
+
 ```
 npm install
 ```
@@ -12,6 +14,11 @@ npm install
 
 ```
 npm run build
+```
+
+## Run Docs Server
+```
+alloy dev
 ```
 
 ## Token structure
