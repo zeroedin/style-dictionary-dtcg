@@ -1,4 +1,6 @@
 node_modules/
-css/
-js/
-json/
+/css/
+/js/
+/json/
+
+/docs/_site

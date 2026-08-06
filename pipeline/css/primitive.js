@@ -1,7 +1,7 @@
 import StyleDictionary from 'style-dictionary';
 import { transformGroups } from 'style-dictionary/enums';
 import { parserConfig } from '../parser.js';
-import { primitiveSource } from '../shared.js';
+import { prefix, primitiveSource } from '../shared.js';
 import '../formats.js';
 
 export const primitive = new StyleDictionary({
@@ -11,7 +11,7 @@ export const primitive = new StyleDictionary({
     css: {
       transformGroup: transformGroups.css,
       buildPath: './css/',
-      prefix: 'felt',
+      prefix,
       files: [
 {
           destination: 'primitive/color/gray.css',

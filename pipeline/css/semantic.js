@@ -1,7 +1,7 @@
 import StyleDictionary from 'style-dictionary';
 import { transformGroups } from 'style-dictionary/enums';
 import { parserConfig } from '../parser.js';
-import { primitiveSource, semanticSource } from '../shared.js';
+import { prefix, primitiveSource, semanticSource } from '../shared.js';
 import '../formats.js';
 
 const semanticFilter = (token) => token.filePath.includes('tokens/semantic/');
@@ -13,7 +13,7 @@ export const semantic = new StyleDictionary({
     css: {
       transformGroup: transformGroups.css,
       buildPath: './css/',
-      prefix: 'felt',
+      prefix,
       files: [
         {
           destination: 'semantic/container.css',

@@ -3,10 +3,10 @@ radius:
   none:
     $value: 0px
   sm:
-    $value: 2px
-  md:
-    $value: 4px
-  lg:
     $value: 8px
+  md:
+    $value: 16px
+  lg:
+    $value: 24px
   full:
-    $value: 9999px
+    $value: 64px

@@ -1,16 +1,16 @@
 color:
   $type: color
   text:
-    default:
+    primary:
       on-light:
         $value: "{color.gray.95}"
       on-dark:
-        $value: "{color.gray.10}"
+        $value: "{color.white}"
     secondary:
       on-light:
-        $value: "{color.gray.50}"
+        $value: "{color.gray.60}"
       on-dark:
-        $value: "{color.gray.40}"
+        $value: "{color.gray.30}"
     disabled:
       on-light:
         $value: "{color.gray.40}"
@@ -22,11 +22,6 @@ color:
       on-dark:
         $value: "{color.gray.95}"
     brand:
-      on-light:
-        $value: "{color.red.50}"
-      on-dark:
-        $value: "{color.red.50}"
-    link:
       on-light:
         $value: "{color.red.50}"
       on-dark:
